@@ -15,9 +15,14 @@ app.get("/test", VerifySanctumToken, async (req, res) => {
   try {
     const data = await getAllCounselor();
     res.json({
+      token: req.token,
       data: data,
     });
   } catch (error) {
     console.error(error);
   }
 });
+
+import productController from "./Counselor/counselor.controller.js";
+
+app.use("/", VerifySanctumToken, productController);

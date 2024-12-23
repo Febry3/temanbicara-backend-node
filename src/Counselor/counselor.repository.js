@@ -2,7 +2,7 @@ import db from "../db.js";
 
 const findCounselors = () => {
   const query =
-    "SELECT id, email, phone_number, role, name, nickname, gender, birthdate FROM users";
+    "SELECT id, email, phone_number, role, name, nickname, gender, birthdate FROM users where role = 'Counselor'";
   return new Promise((resolve, reject) => {
     db.query(query, (error, results) => {
       if (error) {
@@ -14,7 +14,8 @@ const findCounselors = () => {
 };
 
 const findCounselorById = (id) => {
-  const query = "SELECT * FROM users WHERE id = ?";
+  const query =
+    "SELECT id, email, phone_number, role, name, nickname, gender, birthdate FROM users WHERE id = ? AND role = 'Counselor'";
   return new Promise((resolve, reject) => {
     db.query(query, [id], (error, results) => {
       if (error) {

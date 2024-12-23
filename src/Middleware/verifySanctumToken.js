@@ -1,5 +1,4 @@
 import axiosClient from "../axios.js";
-import db from "../db.js";
 
 const VerifySanctumToken = async (req, res, next) => {
   try {
@@ -23,13 +22,14 @@ const VerifySanctumToken = async (req, res, next) => {
     );
 
     req.user = response.data.user;
+    req.token = token;
 
     next();
   } catch (error) {
     console.error("Error in VerifySanctumToken middleware:", error.message);
     return res.status(500).json({
       status: "false",
-      message: "Internal Server Error",
+      message: error.response.data.message,
     });
   }
 };
