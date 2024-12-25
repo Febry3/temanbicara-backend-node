@@ -1,9 +1,10 @@
-import db from "./db.js";
 import express from "express";
 import VerifySanctumToken from "./Middleware/verifySanctumToken.js";
 import { getAllCounselor } from "./Counselor/counselor.service.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 const port = 3000;
 app.use(express.json());
 
@@ -25,4 +26,4 @@ app.get("/test", VerifySanctumToken, async (req, res) => {
 
 import productController from "./Counselor/counselor.controller.js";
 
-app.use("/", VerifySanctumToken, productController);
+app.use("/api/v1", VerifySanctumToken, productController);

@@ -83,10 +83,19 @@ router.post("/counselor", async (req, res) => {
     const token = req.token;
     const counselorData = req.body;
 
-    await createCounselor(counselorData, token);
+    const response = await createCounselor(counselorData, token);
+
+    console.log(response);
+    if (response.status === false) {
+      return res.status(200).json({
+        status: false,
+        message: response.message.email || response.message.phone_number,
+      });
+    }
+
     return res.status(200).json({
       status: true,
-      message: "Berhasil membuat data",
+      message: "Berhasil membuat akun",
     });
   } catch (error) {
     return res.status(400).json({
