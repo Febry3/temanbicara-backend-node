@@ -37,7 +37,7 @@ import adminController from "./admin/admin.controller.js";
 
 app.use("/", VerifySanctumToken, productController);
 app.use("/", VerifySanctumToken, expertiseController);
-app.use("/", VerifySanctumToken, articleController);
+app.use("/api/v1", VerifySanctumToken, articleController);
 app.use("/", VerifySanctumToken, adminController);
 
 app.use("/api/v1", VerifySanctumToken, productController);
