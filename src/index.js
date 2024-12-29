@@ -39,5 +39,4 @@ app.use("/api/v1", VerifySanctumToken, productController);
 app.use("/api/v1", VerifySanctumToken, expertiseController);
 app.use("/api/v1", VerifySanctumToken, articleController);
 app.use("/api/v1", VerifySanctumToken, adminController);
-
 app.use("/api/v1", VerifySanctumToken, productController);
