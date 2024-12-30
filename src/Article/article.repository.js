@@ -3,11 +3,13 @@ import db from "../db.js";
 const getAllArticle = () => {
   const query = `
     SELECT 
-      id AS artikel_id, 
+      artikel_id, 
       title, 
       content, 
       image, 
+      status,
       user_id, 
+      artikels.created_at,
       users.id AS user_id, 
       users.name AS user_name, 
       users.role AS user_role
@@ -24,5 +26,21 @@ const getAllArticle = () => {
   });
 };
 
+const updateStatusById = (articleId, newStatus) => {
+  const query = `
+      UPDATE artikels
+      SET status = ?
+      WHERE artikel_id = ?
+  `;
 
-export { getAllArticle };
+  return new Promise((resolve, reject) => {
+      db.query(query, [newStatus, articleId], (error, results) => {
+          if (error) {
+              reject(error);
+          }
+          resolve(results);
+      });
+  });
+};
+
+export { getAllArticle, updateStatusById };

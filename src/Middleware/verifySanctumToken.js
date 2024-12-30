@@ -23,7 +23,6 @@ const VerifySanctumToken = async (req, res, next) => {
 
     req.user = response.data.user;
     req.token = token;
-
     next();
   } catch (error) {
     console.error("Error in VerifySanctumToken middleware:", error.message);
