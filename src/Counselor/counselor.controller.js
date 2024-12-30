@@ -85,9 +85,8 @@ router.post("/counselor", async (req, res) => {
 
     const response = await createCounselor(counselorData, token);
 
-    console.log(response);
     if (response.status === false) {
-      return res.status(200).json({
+      return res.status(400).json({
         status: false,
         message: response.message.email || response.message.phone_number,
       });

@@ -1,8 +1,8 @@
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import VerifySanctumToken from "./Middleware/verifySanctumToken.js";
 import { getAllCounselor } from "./Counselor/counselor.service.js";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
@@ -13,10 +13,12 @@ app.use(express.json());
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-app.use(cors({
-  origin: "http://localhost:5173",  
-  allowedHeaders: ['Content-Type', 'Authorization']  
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.get("/test", VerifySanctumToken, async (req, res) => {
   try {
