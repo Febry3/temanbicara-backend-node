@@ -36,9 +36,11 @@ import productController from "./Counselor/counselor.controller.js";
 import expertiseController from "./Expertise/expertise.controller.js";
 import articleController from "./Article/article.controller.js";
 import adminController from "./admin/admin.controller.js";
+import quizController from "./Quiz/quiz.controller.js";
 
 app.use("/api/v1", VerifySanctumToken, productController);
 app.use("/api/v1", VerifySanctumToken, expertiseController);
 app.use("/api/v1", VerifySanctumToken, articleController);
 app.use("/api/v1", VerifySanctumToken, adminController);
 app.use("/api/v1", VerifySanctumToken, productController);
+app.use("/api/v1", VerifySanctumToken, quizController);
