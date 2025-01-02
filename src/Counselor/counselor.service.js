@@ -5,6 +5,7 @@ import {
   findCounselorById,
   updateCounselor,
   deleteCounselor,
+  insertExpertise,
 } from "./counselor.repository.js";
 
 const getAllCounselor = async () => {
@@ -47,10 +48,15 @@ const createCounselor = async (counselorData, token) => {
   return response.data;
 };
 
+const createExpertise = async (expertiseData) => {
+  await insertExpertise(expertiseData);
+};
+
 export {
   getAllCounselor,
   getCounselorById,
   editCounselorById,
   deleteCounselorById,
   createCounselor,
+  createExpertise,
 };

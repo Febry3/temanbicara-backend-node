@@ -1,13 +1,12 @@
-import {findAdmin} from "./admin.repository.js";
+import { findAdmin } from "./admin.repository.js";
 import { findAdminByEmail } from "./admin.repository.js";
 import { deleteAdmin } from "./admin.repository.js";
 import { updateAdmin } from "./admin.repository.js";
-import bcrypt from "bcrypt";
 import axiosClient from "../axios.js";
 
 const getAllAdmin = async () => {
   const admin = await findAdmin();
-  console.log(admin)
+  console.log(admin);
   return admin;
 };
 
@@ -30,7 +29,7 @@ const verifyAdminPassword = async (email, password) => {
     throw new Error("Password is incorrect");
   }
 
-  return admin[0]; 
+  return admin[0];
 };
 
 const createAdmin = async (adminData, token) => {
@@ -55,4 +54,10 @@ const createAdmin = async (adminData, token) => {
   return response.data;
 };
 
-export { getAllAdmin, verifyAdminPassword, createAdmin, deleteAdminById, editAdminById };
+export {
+  getAllAdmin,
+  verifyAdminPassword,
+  createAdmin,
+  deleteAdminById,
+  editAdminById,
+};

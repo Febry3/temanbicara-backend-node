@@ -5,13 +5,20 @@ import {
   editCounselorById,
   deleteCounselorById,
   createCounselor,
+  createExpertise,
 } from "./counselor.service.js";
+import { getExpertiseHelper } from "./counselorHelper.js";
 
 const router = express.Router();
 
 router.get("/counselor", async (req, res) => {
   try {
     const counselors = await getAllCounselor();
+
+    for (let i = 0; i < counselors.length; i++) {
+      counselors[i].expertises = await getExpertiseHelper(counselors[i].id);
+    }
+
     return res.status(200).json({
       status: true,
       message: "Berhasil mendapatkan data",
@@ -95,6 +102,7 @@ router.post("/counselor", async (req, res) => {
     return res.status(200).json({
       status: true,
       message: "Berhasil membuat akun",
+      data: response.data,
     });
   } catch (error) {
     return res.status(400).json({
@@ -103,5 +111,45 @@ router.post("/counselor", async (req, res) => {
     });
   }
 });
+
+router.post("/expertise", async (req, res) => {
+  try {
+    const expertiseData = req.body;
+    console.log(expertiseData);
+
+    await createExpertise(expertiseData);
+
+    return res.status(200).json({
+      status: true,
+      message: "Berhasil menambahkan expertise",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      status: false,
+      message: error,
+    });
+  }
+});
+
+// router.get("/expertise", async (req, res) => {
+//   try {
+//     const expertise = await findExpertiseByCounselorId(11);
+//     const expertises = [];
+//     expertise.map((item) => expertises.push(item.type));
+//     console.log(expertise);
+
+//     return res.status(200).json({
+//       status: true,
+//       message: "Berhasil menambahkan expertise",
+//       data: expertises.join(","),
+//     });
+//   } catch (error) {
+//     return res.status(400).json({
+//       status: false,
+//       message: error.response.data.message,
+//     });
+//   }
+// });
 
 export default router;

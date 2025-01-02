@@ -4,7 +4,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "temanbicara_backend",
+  database: "temanbicara-backend",
   port: "3306",
 });
 
