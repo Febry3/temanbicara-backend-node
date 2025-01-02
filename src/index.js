@@ -37,6 +37,7 @@ import expertiseController from "./Expertise/expertise.controller.js";
 import articleController from "./Article/article.controller.js";
 import adminController from "./admin/admin.controller.js";
 import quizController from "./Quiz/quiz.controller.js";
+import consultController from "./consultation/consultation.controller.js";
 
 app.use("/api/v1", VerifySanctumToken, productController);
 app.use("/api/v1", VerifySanctumToken, expertiseController);
@@ -44,3 +45,4 @@ app.use("/api/v1", VerifySanctumToken, articleController);
 app.use("/api/v1", VerifySanctumToken, adminController);
 app.use("/api/v1", VerifySanctumToken, productController);
 app.use("/api/v1", VerifySanctumToken, quizController);
+app.use("/api/v1", VerifySanctumToken, consultController);
