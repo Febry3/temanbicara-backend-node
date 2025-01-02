@@ -63,4 +63,39 @@ const deleteCounselor = (id) => {
   });
 };
 
-export { findCounselors, findCounselorById, updateCounselor, deleteCounselor };
+const insertExpertise = (expertiseData) => {
+  const query = "INSERT INTO `expertises`(`type`, `user_id`) VALUES (?,?)";
+  return new Promise((resolve, reject) => {
+    db.query(
+      query,
+      [expertiseData.type, expertiseData.counselor_id],
+      (error, results) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      }
+    );
+  });
+};
+
+const findExpertiseByCounselorId = (counselor_id) => {
+  const query = "SELECT type from expertises where user_id = ?";
+  return new Promise((resolve, reject) => {
+    db.query(query, [counselor_id], (error, results) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(results);
+    });
+  });
+};
+
+export {
+  findCounselors,
+  findCounselorById,
+  updateCounselor,
+  deleteCounselor,
+  insertExpertise,
+  findExpertiseByCounselorId,
+};
